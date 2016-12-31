@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue-sandbox</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model='newItem' v-on:keyup.enter="add"/>
+      <select v-model="selected">
+        <option value="not-completed">未完了</option>
+        <option value="all">全て</option>
+        <option value="completed">完了</option>
+      </select>
+      <ul>
+        <li v-for="(todo, idx) in todos" v-show="show(todo)">
+          <input type="checkbox" v-on:change="complete(idx, $event)" v-bind:checked="todo.completed" v-bind:id="idx" />
+          <label v-bind:for="idx">{{todo.task}}</label>
+          <button v-on:click="remove(idx)">X</button>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
